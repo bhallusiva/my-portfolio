@@ -1,10 +1,11 @@
 import { ArrowDown, Download } from 'lucide-react'
 import { profile } from '../data/portfolio'
 import { GithubIcon, LinkedinIcon } from './Icons'
+import TypedCode, { type CodeLine } from './TypedCode'
 
 // Real lines from BankManagementTesting---JUnit5 (src/main/.../BackAccount.java and src/test/.../TestBankAccount.java),
 // lightly shortened. The identifiers are shown exactly as they appear in the repository.
-const code: { t: string; c?: string }[] = [
+const code: CodeLine[] = [
   { t: 'void Withdraw(int amount) {', c: 'k' },
   { t: '    if (amount > balance) {' },
   { t: '        throw new IllegalArgumentException(', c: 'k' },
@@ -55,13 +56,9 @@ export default function Hero() {
             <span className="font-mono text-xs text-muted">BankManagementTesting---JUnit5</span>
             <span className="font-mono text-xs text-muted">Java 21</span>
           </div>
-          <pre className="overflow-x-auto p-4 font-mono text-[0.8rem] leading-6 sm:text-[0.82rem]">
+          <pre className="overflow-x-auto p-4 font-mono text-[0.76rem] leading-6 sm:text-[0.82rem]">
             <code>
-              {code.map((l, i) => (
-                <span key={i} className="code-line block whitespace-pre" style={{ ['--i' as string]: i }}>
-                  <span className={l.c === 'a' ? 'text-accent' : l.c === 'k' ? 'text-ink' : 'text-muted'}>{l.t || ' '}</span>
-                </span>
-              ))}
+              <TypedCode lines={code} />
             </code>
           </pre>
         </div>
