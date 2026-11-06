@@ -2,6 +2,7 @@ import { ArrowDown, Download } from 'lucide-react'
 import { profile } from '../data/portfolio'
 import { GithubIcon, LinkedinIcon } from './Icons'
 import TypedCode, { type CodeLine } from './TypedCode'
+import { useDsaData } from '../data/useDsaData'
 
 // Real lines from BankManagementTesting---JUnit5 (src/main/.../BackAccount.java and src/test/.../TestBankAccount.java),
 // lightly shortened. The identifiers are shown exactly as they appear in the repository.
@@ -22,6 +23,8 @@ const code: CodeLine[] = [
 ]
 
 export default function Hero() {
+  const { problems } = useDsaData()
+
   return (
     <section id="home" className="wrap grid items-center gap-12 py-16 md:py-24 lg:grid-cols-12 lg:gap-10">
       <div className="lg:col-span-7">
@@ -31,8 +34,8 @@ export default function Hero() {
         </h1>
         <p className="lede mt-6 text-lg">
           I’m Bhallu Siva, a Computer Science engineering student focused on Java backend development, REST APIs,
-          databases and algorithmic problem-solving. I’ve solved 117 LeetCode problems in Java and built backend,
-          testing and computer-vision projects.
+          databases and algorithmic problem-solving. I’ve solved {problems.length} LeetCode problems in Java and built
+          backend, testing and computer-vision projects.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <a href="#projects" className="btn btn-primary">Explore my projects <ArrowDown size={16} /></a>
