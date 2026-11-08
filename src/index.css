@@ -6,43 +6,55 @@
   --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
   --color-paper: #fafaf8;
+  --color-surface: #ffffff;
+  --color-surface-2: #f6f7f9;
   --color-ink: #172033;
   --color-muted: #5b6b82;
   --color-accent: #315eaa;
+  --color-accent-strong: #315eaa;
   --color-accent-soft: #eaf0f9;
   --color-line: #e5e7eb;
+  --selection: #cddcf3;
+}
+
+/* Dark palette: same variables, new values */
+:root.dark {
+  color-scheme: dark;
+  --color-paper: #0f1521;
+  --color-surface: #151c2b;
+  --color-surface-2: #1a2336;
+  --color-ink: #e6ebf5;
+  --color-muted: #94a3b8;
+  --color-accent: #7aa2e3;
+  --color-accent-strong: #3b6cc5;
+  --color-accent-soft: #17243c;
+  --color-line: #263249;
+  --selection: #2a4170;
 }
 
 html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 4px; }
-::selection { background: #cddcf3; }
+::selection { background: var(--selection); }
+
+/* Smooth colour change when the toggle is pressed */
+html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease !important;
+}
 
 .wrap { width: 100%; max-width: 70rem; margin-inline: auto; padding-inline: clamp(1.25rem, 4vw, 2rem); }
 .section { padding-block: clamp(4rem, 9vw, 6.5rem); border-top: 1px solid var(--color-line); }
 .h2 { font-size: clamp(1.7rem, 3.2vw, 2.25rem); font-weight: 650; letter-spacing: -0.02em; line-height: 1.15; }
 .lede { color: var(--color-muted); max-width: 40rem; line-height: 1.65; }
-.tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-ink); background: #fff; border: 1px solid var(--color-line); padding: 0.15rem 0.5rem; border-radius: 4px; white-space: nowrap; }
-.btn { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 550; font-size: 0.925rem; padding: 0.65rem 1.1rem; border-radius: 6px; border: 1px solid var(--color-line); background: #fff; color: var(--color-ink); transition: border-color .15s, background .15s; }
+.tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-ink); background: var(--color-surface); border: 1px solid var(--color-line); padding: 0.15rem 0.5rem; border-radius: 4px; white-space: nowrap; }
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 550; font-size: 0.925rem; padding: 0.65rem 1.1rem; border-radius: 6px; border: 1px solid var(--color-line); background: var(--color-surface); color: var(--color-ink); transition: border-color .15s, background .15s, filter .15s; }
 .btn:hover { border-color: var(--color-accent); }
-.btn-primary { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
-.btn-primary:hover { background: #274e91; border-color: #274e91; }
+.btn-primary { background: var(--color-accent-strong); border-color: var(--color-accent-strong); color: #fff; }
+.btn-primary:hover { filter: brightness(0.92); border-color: var(--color-accent-strong); }
 .link { color: var(--color-accent); text-underline-offset: 3px; }
 .link:hover { text-decoration: underline; }
 
-/* Hero code panel: one page-load reveal, line by line */
-@keyframes line-in { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: none; } }
-.code-line { opacity: 0; animation: line-in .45s ease forwards; animation-delay: calc(var(--i) * 70ms + 250ms); }
-dialog::backdrop { background: rgb(23 32 51 / 0.45); }
-dialog[open] { animation: dlg .18s ease; }
-@keyframes dlg { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .code-line { opacity: 1; animation: none; }
-  dialog[open] { animation: none; }
-  * { transition: none !important; }
-}
+/* Typing caret for the hero code panel */
 .caret {
   display: inline-block;
   width: 0.55ch;
@@ -54,9 +66,9 @@ dialog[open] { animation: dlg .18s ease; }
 }
 @keyframes blink { 50% { opacity: 0; } }
 
-@media (prefers-reduced-motion: reduce) {
-  .caret { animation: none; }
-}
+dialog::backdrop { background: rgb(5 10 20 / 0.55); }
+dialog[open] { animation: dlg .18s ease; }
+@keyframes dlg { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
 /* ---------- Entrance animations ---------- */
 .intro-panel { transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1); }
@@ -68,7 +80,6 @@ dialog[open] { animation: dlg .18s ease; }
 @keyframes intro-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @keyframes intro-line { to { width: 7rem; } }
 
-/* Hero stagger: starts when the section gets .is-ready */
 .rise { opacity: 0; }
 .is-ready .rise {
   animation: rise 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
@@ -76,7 +87,6 @@ dialog[open] { animation: dlg .18s ease; }
 }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
-/* Scroll reveal */
 .reveal {
   opacity: 0;
   transform: translateY(18px);
@@ -86,7 +96,11 @@ dialog[open] { animation: dlg .18s ease; }
 .reveal.in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  dialog[open] { animation: none; }
+  .caret { animation: none; }
   .rise, .is-ready .rise { opacity: 1; animation: none; }
   .reveal { opacity: 1; transform: none; }
   .intro-fade { opacity: 1; animation: none; }
+  * { transition: none !important; }
 }

@@ -38,7 +38,7 @@ export default function Intro({ onLeave, onDone }: { onLeave: () => void; onDone
   return (
     <div className="fixed inset-0 z-[100]" aria-hidden="true">
       <div className={`intro-panel flex h-full w-full flex-col items-center justify-center gap-5 bg-paper ${leaving ? 'leave' : ''}`}>
-        <div className="intro-fade flex h-14 w-14 items-center justify-center rounded-lg bg-accent font-mono text-xl font-bold text-paper">
+        <div className="intro-fade flex h-14 w-14 items-center justify-center rounded-lg bg-accent-strong font-mono text-xl font-bold text-white">
           bs
         </div>
         <p className="intro-fade intro-delay text-lg font-semibold tracking-tight">Bhallu Siva</p>
