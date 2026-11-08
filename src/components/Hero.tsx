@@ -22,28 +22,33 @@ const code: CodeLine[] = [
   { t: '}' },
 ]
 
-export default function Hero() {
+const d = (n: number) => ({ ['--d' as string]: n })
+
+export default function Hero({ ready = true }: { ready?: boolean }) {
   const { problems } = useDsaData()
 
   return (
-    <section id="home" className="wrap grid items-center gap-12 py-16 md:py-24 lg:grid-cols-12 lg:gap-10">
+    <section
+      id="home"
+      className={`wrap grid items-center gap-12 py-16 md:py-24 lg:grid-cols-12 lg:gap-10 ${ready ? 'is-ready' : ''}`}
+    >
       <div className="lg:col-span-7">
-        <p className="mb-5 font-mono text-sm text-muted">Bhallu Siva · B.Tech CSE · Visakhapatnam</p>
-        <h1 className="text-[clamp(2.4rem,6vw,4.1rem)] font-bold leading-[1.04] tracking-[-0.035em]">
+        <p className="rise mb-5 font-mono text-sm text-muted" style={d(0)}>Bhallu Siva · B.Tech CSE · Visakhapatnam</p>
+        <h1 className="rise text-[clamp(2.4rem,6vw,4.1rem)] font-bold leading-[1.04] tracking-[-0.035em]" style={d(1)}>
           Building practical software, one problem at a time.
         </h1>
-        <p className="lede mt-6 text-lg">
+        <p className="rise lede mt-6 text-lg" style={d(2)}>
           I’m Bhallu Siva, a Computer Science engineering student focused on Java backend development, REST APIs,
           databases and algorithmic problem-solving. I’ve solved {problems.length} LeetCode problems in Java and built
           backend, testing and computer-vision projects.
         </p>
-        <div className="mt-8 flex flex-wrap items-center gap-3">
+        <div className="rise mt-8 flex flex-wrap items-center gap-3" style={d(3)}>
           <a href="#projects" className="btn btn-primary">Explore my projects <ArrowDown size={16} /></a>
           <a href={profile.resume} className="btn" target="_blank" rel="noopener noreferrer">
             <Download size={16} /> View resume
           </a>
         </div>
-        <div className="mt-6 flex items-center gap-5 text-sm text-muted">
+        <div className="rise mt-6 flex items-center gap-5 text-sm text-muted" style={d(4)}>
           <a className="flex items-center gap-2 hover:text-ink" href={profile.github} target="_blank" rel="noopener noreferrer">
             <GithubIcon /> GitHub
           </a>
@@ -53,16 +58,14 @@ export default function Hero() {
         </div>
       </div>
 
-      <figure className="lg:col-span-5" aria-label="Excerpt of Java source code from my Bank Account project">
+      <figure className="rise lg:col-span-5" style={d(3)} aria-label="Excerpt of Java source code from my Bank Account project">
         <div className="overflow-hidden rounded-lg border border-line bg-white shadow-[0_1px_2px_rgb(23_32_51/0.06)]">
           <div className="flex items-center justify-between border-b border-line bg-[#f6f7f9] px-4 py-2.5">
             <span className="font-mono text-xs text-muted">BankManagementTesting---JUnit5</span>
             <span className="font-mono text-xs text-muted">Java 21</span>
           </div>
-          <pre className="overflow-x-auto p-4 font-mono text-[0.76rem] leading-6 sm:text-[0.82rem]">
-            <code>
-              <TypedCode lines={code} />
-            </code>
+          <pre className="min-h-[22rem] overflow-x-auto p-4 font-mono text-[0.76rem] leading-6 sm:text-[0.82rem]">
+            <code>{ready && <TypedCode lines={code} />}</code>
           </pre>
         </div>
         <figcaption className="mt-3 text-xs text-muted">From my JUnit 5 project: a business rule and the test that checks it.</figcaption>
