@@ -26,7 +26,7 @@ export default function Dsa() {
   const practiceTotal = Object.values(practice).flat().length
 
   return (
-    <section id="dsa" className="section bg-white">
+    <section id="dsa" className="section bg-band">
       <div className="wrap">
         <div className="grid gap-4 lg:grid-cols-12">
           <h2 className="h2 lg:col-span-4">Problem solving and DSA</h2>

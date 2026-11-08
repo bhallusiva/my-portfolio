@@ -3,10 +3,11 @@ import { ArrowUpRight, X } from 'lucide-react'
 import { projects, type Project } from '../data/portfolio'
 import { GithubIcon } from './Icons'
 import ProjectVisual from './ProjectVisual'
+import Reveal from './Reveal'
 
 function Card({ p, onOpen }: { p: Project; onOpen: (p: Project) => void }) {
   return (
-    <article className="flex flex-col rounded-lg border border-line bg-white p-5">
+    <article className="group flex h-full flex-col rounded-lg border border-line bg-surface p-5 transition-colors duration-200 hover:border-accent/60">
       <ProjectVisual id={p.id} />
       <div className="mt-5 flex items-center justify-between gap-3">
         <span className="font-mono text-xs text-accent">{p.kind}</span>
@@ -28,12 +29,12 @@ function Card({ p, onOpen }: { p: Project; onOpen: (p: Project) => void }) {
 }
 
 function Detail({ p, dlg }: { p: Project | null; dlg: React.RefObject<HTMLDialogElement | null> }) {
-  const list = 'mt-2 list-disc space-y-1.5 pl-5 text-[0.95rem] leading-relaxed'
+  const list = 'mt-2 list-disc space-y-1.5 pl-5 text-[0.95rem] leading-relaxed marker:text-muted'
   return (
     <dialog
       ref={dlg}
       aria-labelledby="detail-title"
-      className="m-auto max-h-[88vh] w-[min(42rem,calc(100%-2rem))] overflow-y-auto rounded-lg border border-line bg-white p-0 text-ink"
+      className="m-auto max-h-[88vh] w-[min(42rem,calc(100%-2rem))] overflow-y-auto rounded-lg border border-line bg-surface p-0 text-ink shadow-xl"
       onClick={(e) => { if (e.target === e.currentTarget) e.currentTarget.close() }}
     >
       {p && (
@@ -80,7 +81,11 @@ export default function Projects() {
           </p>
         </div>
         <div className="mt-10 grid gap-5 md:grid-cols-2">
-          {projects.filter((p) => p.featured).map((p) => <Card key={p.id} p={p} onOpen={open} />)}
+          {projects.filter((p) => p.featured).map((p, i) => (
+            <Reveal key={p.id} delay={(i % 2) * 100} className="h-full">
+              <Card p={p} onOpen={open} />
+            </Reveal>
+          ))}
         </div>
         <p className="mt-6 text-sm text-muted">
           There is also a{' '}

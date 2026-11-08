@@ -8,6 +8,7 @@
   --color-paper: #fafaf8;
   --color-surface: #ffffff;
   --color-surface-2: #f6f7f9;
+  --color-band: #ffffff;
   --color-ink: #172033;
   --color-muted: #5b6b82;
   --color-accent: #315eaa;
@@ -17,12 +18,12 @@
   --selection: #cddcf3;
 }
 
-/* Dark palette: same variables, new values */
 :root.dark {
   color-scheme: dark;
   --color-paper: #0f1521;
-  --color-surface: #151c2b;
-  --color-surface-2: #1a2336;
+  --color-surface: #161e2e;
+  --color-surface-2: #0d1320;
+  --color-band: #121a28;
   --color-ink: #e6ebf5;
   --color-muted: #94a3b8;
   --color-accent: #7aa2e3;
@@ -37,7 +38,6 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: var
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 4px; }
 ::selection { background: var(--selection); }
 
-/* Smooth colour change when the toggle is pressed */
 html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease !important;
 }
@@ -54,7 +54,6 @@ html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
 .link { color: var(--color-accent); text-underline-offset: 3px; }
 .link:hover { text-decoration: underline; }
 
-/* Typing caret for the hero code panel */
 .caret {
   display: inline-block;
   width: 0.55ch;
@@ -70,7 +69,6 @@ dialog::backdrop { background: rgb(5 10 20 / 0.55); }
 dialog[open] { animation: dlg .18s ease; }
 @keyframes dlg { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-/* ---------- Entrance animations ---------- */
 .intro-panel { transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1); }
 .intro-panel.leave { transform: translateY(-100%); }
 .intro-fade { opacity: 0; animation: intro-fade 0.6s ease forwards; }

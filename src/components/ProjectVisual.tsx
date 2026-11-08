@@ -3,7 +3,7 @@
 const m = 'font-mono text-[0.72rem]'
 
 export default function ProjectVisual({ id }: { id: string }) {
-  const box = 'h-28 rounded-md border border-line bg-[#f6f7f9] p-3'
+  const box = 'h-28 rounded-md border border-line bg-surface-2 p-3'
   if (id === 'springboot') {
     const rows = [['GET', '/Products'], ['GET', '/Products/{id}'], ['POST', '/Products'], ['PUT', '/Products'], ['DELETE', '/Products/{id}']]
     return (
@@ -36,7 +36,7 @@ export default function ProjectVisual({ id }: { id: string }) {
       <div className={`${box} flex items-center justify-between gap-1`} aria-hidden>
         {steps.map((s, i) => (
           <div key={s} className="flex items-center gap-1">
-            <span className={`${m} rounded border border-line bg-white px-1.5 py-1 ${i === 2 ? 'border-accent text-accent' : 'text-muted'}`}>{s}</span>
+            <span className={`${m} rounded border bg-surface px-1.5 py-1 ${i === 2 ? 'border-accent text-accent' : 'border-line text-muted'}`}>{s}</span>
             {i < steps.length - 1 && <span className="h-px w-2 bg-line" />}
           </div>
         ))}

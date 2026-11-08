@@ -2,7 +2,7 @@ import { certifications, education } from '../data/portfolio'
 
 export default function Education() {
   return (
-    <section id="education" className="section bg-white">
+    <section id="education" className="section bg-band">
       <div className="wrap grid gap-8 lg:grid-cols-12">
         <h2 className="h2 lg:col-span-4">Education and certifications</h2>
         <div className="space-y-10 lg:col-span-8">

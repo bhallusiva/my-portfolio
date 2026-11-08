@@ -59,12 +59,12 @@ export default function Hero({ ready = true }: { ready?: boolean }) {
       </div>
 
       <figure className="rise lg:col-span-5" style={d(3)} aria-label="Excerpt of Java source code from my Bank Account project">
-        <div className="overflow-hidden rounded-lg border border-line bg-white shadow-[0_1px_2px_rgb(23_32_51/0.06)]">
-          <div className="flex items-center justify-between border-b border-line bg-[#f6f7f9] px-4 py-2.5">
+        <div className="overflow-hidden rounded-lg border border-line bg-surface shadow-[0_1px_2px_rgb(23_32_51/0.06)]">
+          <div className="flex items-center justify-between border-b border-line bg-surface-2 px-4 py-2.5">
             <span className="font-mono text-xs text-muted">BankManagementTesting---JUnit5</span>
             <span className="font-mono text-xs text-muted">Java 21</span>
           </div>
-          <pre className="min-h-[22rem] overflow-x-auto p-4 font-mono text-[0.76rem] leading-6 sm:text-[0.82rem]">
+          <pre className="min-h-[22rem] overflow-x-auto bg-surface p-4 font-mono text-[0.76rem] leading-6 sm:text-[0.82rem]">
             <code>{ready && <TypedCode lines={code} />}</code>
           </pre>
         </div>
